@@ -1,8 +1,7 @@
 <?php
 
-namespace osenyursa\fileupload\actions;
+namespace osenyursa\fileupload;
 
-use osenyursa\fileupload\model\UploadForm;
 use Yii;
 use yii\base\Action;
 use yii\web\UploadedFile;

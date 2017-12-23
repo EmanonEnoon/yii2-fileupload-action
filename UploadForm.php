@@ -1,6 +1,6 @@
 <?php
 
-namespace osenyursa\fileupload\model;
+namespace osenyursa\fileupload;
 
 
 use yii\base\Model;
@@ -20,10 +20,6 @@ class UploadForm extends Model
 
     public function rules()
     {
-        /*return [
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
-        ];*/
-
         return $this->rules;
     }
 
