@@ -1,0 +1,21 @@
+{
+    "name": "osenyursa/yii2-fileupload",
+    "description": "use in controller",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","fileupload"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "osenyursa",
+            "email": "osenyursa@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "osenyursa\\fileupload\\": ""
+        }
+    }
+}
