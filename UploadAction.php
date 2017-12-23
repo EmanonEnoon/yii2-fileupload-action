@@ -2,38 +2,73 @@
 
 namespace osenyursa\fileupload;
 
-use Yii;
 use yii\base\Action;
+use yii\helpers\FileHelper;
+use yii\validators\FileValidator;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
+/**
+ * Class UploadAction
+ * @package osenyursa\fileupload
+ */
 class UploadAction extends Action
 {
-    public $rule;
+    /**
+     * ```
+     * ['skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4]
+     * ```
+     * @var
+     */
+    public $rules;
 
-    /** @var  UploadForm */
-    private $model;
+    /**
+     * the name of the file input field.
+     * @var string
+     */
+    public $name;
 
-    public function beforeRun()
-    {
-        $this->model = new UploadForm();
-        $this->model->rules = $this->rule;
+    /**
+     * @var UploadedFile
+     */
+    public $file;
 
-        return parent::beforeRun();
-    }
+    /**
+     * @var string
+     */
+    public $savePath;
+
+    /**
+     * @var string
+     */
+    public $saveBaseName;
+
 
     public function run()
     {
-        if (Yii::$app->request->isPost) {
-            $this->model->imageFiles = UploadedFile::getInstances($this->model, 'imageFiles');
-            if ($this->model->upload()) {
-                // 文件上传成功
-                return;
-            }
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $this->file = UploadedFile::getInstanceByName($this->name);
+
+        $validator = new FileValidator($this->rules);
+        if (!$validator->validate($this->file, $error)) {
+            return ['error' => $error];
         }
 
-        return $this->controller->render('upload', [
-            'model' => $this->model,
-        ]);
+        $this->upload();
 
+        return ['success' => '1'];
+
+    }
+
+    protected function upload()
+    {
+        FileHelper::createDirectory($this->savePath);
+
+        $this->file->saveAs(implode('', [
+            $this->savePath,
+            $this->saveBaseName ?: $this->file->baseName,
+            $this->file->extension
+        ]));
     }
 }

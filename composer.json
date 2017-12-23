@@ -1,5 +1,5 @@
 {
-    "name": "osenyursa/yii2-fileupload",
+    "name": "osenyursa/yii2-fileupload-action",
     "description": "use in controller",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","fileupload"],
