@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist osenyursa/yii2-fileupload "dev-master"
+php composer.phar require --prefer-dist osenyursa/yii2-fileupload-action "0.1.0"
 ```
 
 or add
 
 ```
-"osenyursa/yii2-fileupload": "dev-master"
+"osenyursa/yii2-fileupload-action": "0.1.0"
 ```
 
 to the require section of your `composer.json` file.
